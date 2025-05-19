@@ -9,16 +9,22 @@ To write a program to find the solution of a matrix using Gaussian Elimination.
 
 ## Algorithm
 ### Step1 : 
-Input the number of unknowns n and the augmented matrix elements (coefficients + constants).
+the number of unknowns n, then read the augmented matrix a[n][n+1] and initialize solution array x[n] using NumPy.
 
 ### Step 2:
-Apply Forward Elimination: eliminate variables step-by-step to create an upper triangular matrix.
+Check for zero pivots in the diagonal a[i][i], if found, exit using sys.exit() to prevent division by zero.
 
 ### Step 3: 
-Apply Back Substitution: solve for variables starting from the last equation upwards.
+For each row below pivot, calculate the ratio = a[j][i] / a[i][i] and eliminate lower entries using a[j][k] -= ratio * a[i][k].
 
 ### Step 4:
-Display the solutions for each variable.
+Initialize last variable: Compute x[n-1] = a[n-1][n] / a[n-1][n-1].
+
+### Step 5:
+Back Substitution: For rows i = n-2 to 0, compute x[i] by subtracting known terms and dividing by pivot: x[i] = (a[i][n] - Σ a[i][j]*x[j]) / a[i][i].
+
+### Step 6:
+Output the solution vector x using a loop and formatted print() statements.
 
 ## Program:
 ```
